@@ -1,0 +1,112 @@
+'''
+The total number of months included in the dataset.
+The net total amount of Profit/Losses over the entire period.
+The average of the changes in Profit/Losses over the entire period.
+The greatest increase in profits (date and amount) over the entire period.
+The greatest decrease in losses (date and amount) over the entire period.
+
+Extras:
+add summary by year and show max and min values for each year
+'''
+
+
+import pandas as pd
+
+
+#reading the data from a csv file
+df = pd.read_csv("budget_data.csv")
+
+
+#variables
+total_months = 0
+net_pnl = 0
+avg_pnl = 0
+greatest_inc_profits = 0
+greatest_dec_profits = 0
+
+#getting statistics
+net_pnl = df['Profit/Losses'].sum()
+greatest_inc_profits = df['Profit/Losses'].max()
+greatest_dec_profits = df['Profit/Losses'].min()
+avg_pnl = df['Profit/Losses'].mean()
+
+
+#getting statistics by years
+df_2010 = df.loc[df['Date'].str.contains('10')] 
+year_2010 = df_2010['Profit/Losses'].sum(axis = 0)
+greatest_inc_profits_2010 = df_2010['Profit/Losses'].max()
+greatest_dec_profits_2010 = df_2010['Profit/Losses'].min()
+
+df_2011 = df.loc[df['Date'].str.contains('11')] 
+year_2011 = df_2011['Profit/Losses'].sum(axis = 0)
+greatest_inc_profits_2011 = df_2011['Profit/Losses'].max()
+greatest_dec_profits_2011 = df_2011['Profit/Losses'].min()
+
+df_2012 = df.loc[df['Date'].str.contains('12')] 
+year_2012 = df_2012['Profit/Losses'].sum(axis = 0)
+greatest_inc_profits_2012 = df_2012['Profit/Losses'].max()
+greatest_dec_profits_2012 = df_2012['Profit/Losses'].min()
+
+df_2013 = df.loc[df['Date'].str.contains('13')] 
+year_2013 = df_2013['Profit/Losses'].sum(axis = 0)
+greatest_inc_profits_2013 = df_2013['Profit/Losses'].max()
+greatest_dec_profits_2013 = df_2013['Profit/Losses'].min()
+
+df_2014 = df.loc[df['Date'].str.contains('14')] 
+year_2014 = df_2014['Profit/Losses'].sum(axis = 0)
+greatest_inc_profits_2014 = df_2014['Profit/Losses'].max()
+greatest_dec_profits_2014 = df_2014['Profit/Losses'].min()
+
+df_2015 = df.loc[df['Date'].str.contains('15')] 
+year_2015 = df_2015['Profit/Losses'].sum(axis = 0)
+greatest_inc_profits_2015 = df_2015['Profit/Losses'].max()
+greatest_dec_profits_2015 = df_2015['Profit/Losses'].min()
+
+df_2016 = df.loc[df['Date'].str.contains('16')] 
+year_2016 = df_2016['Profit/Losses'].sum(axis = 0)
+greatest_inc_profits_2016 = df_2017['Profit/Losses'].max()
+greatest_dec_profits_2016 = df_2017['Profit/Losses'].min()
+
+df_2017 = df.loc[df['Date'].str.contains('17')] 
+year_2017 = df_2017['Profit/Losses'].sum(axis = 0)
+greatest_inc_profits_2017 = df_2017['Profit/Losses'].max()
+greatest_dec_profits_2017 = df_2017['Profit/Losses'].min()
+
+
+
+#adding a new column for years, tried to count periods (8) but brings 86
+'''
+df.loc[df['Date'].str.contains ('2010'), 'year']  = '2010'
+df.loc[df['Date'].str.contains ('2011'), 'year']  = '2011'
+df.loc[df['Date'].str.contains ('2012'), 'year']  = '2012'
+df.loc[df['Date'].str.contains ('2013'), 'year']  = '2013'
+df.loc[df['Date'].str.contains ('2014'), 'year']  = '2014'
+df.loc[df['Date'].str.contains ('2015'), 'year']  = '2015'
+df.loc[df['Date'].str.contains ('2016'), 'year']  = '2016'
+df.loc[df['Date'].str.contains ('2017'), 'year']  = '2017'
+'''
+
+
+
+#printing results
+print("********FINANCIAL ANALYSIS********")
+print("=========================================")
+print(f"Total of Months: {len(df)}")
+
+print("=========================================")
+print(f"-Greatest Increase Profits: ${greatest_inc_profits:,}")
+print(f"-Greatest Decrese Profits:  ${greatest_dec_profits:,}")
+print(f"-Average changes: ${np.round(avg_pnl,2):,}")
+print("-----------------------------------------")
+print(f"-Net PnL: ${np.round(net_pnl,2):,}")
+print("-----------------------------------------")
+
+print("-------Summary by Year--------")
+print(f"Year 2010 Net PnL = {year_2010:,} ---- Greatest Increase Profits: {greatest_inc_profits_2010:,} Greatest Decrese Profits: {greatest_dec_profits_2010:,}")
+print(f"Year 2011 Net PnL = {year_2011:,} ---- Greatest Increase Profits: {greatest_inc_profits_2011:,} Greatest Decrese Profits: {greatest_dec_profits_2011:,}")
+print(f"Year 2012 Net PnL = {year_2012:,} ---- Greatest Increase Profits: {greatest_inc_profits_2012:,} Greatest Decrese Profits: {greatest_dec_profits_2012:,}")
+print(f"Year 2013 Net PnL = {year_2013:,} ---- Greatest Increase Profits: {greatest_inc_profits_2013:,} Greatest Decrese Profits: {greatest_dec_profits_2013:,}")
+print(f"Year 2014 Net PnL = {year_2014:,} ---- Greatest Increase Profits: {greatest_inc_profits_2014:,} Greatest Decrese Profits: {greatest_dec_profits_2014:,}")
+print(f"Year 2015 Net PnL = {year_2015:,} ---- Greatest Increase Profits: {greatest_inc_profits_2015:,} Greatest Decrese Profits: {greatest_dec_profits_2015:,}")
+print(f"Year 2016 Net PnL = {year_2016:,} ---- Greatest Increase Profits: {greatest_inc_profits_2016:,} Greatest Decrese Profits: {greatest_dec_profits_2016:,}")
+print(f"Year 2017 Net PnL = {year_2017:,} ---- Greatest Increase Profits: {greatest_inc_profits_2017:,} Greatest Decrese Profits: {greatest_dec_profits_2017:,}"
